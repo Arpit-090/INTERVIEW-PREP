@@ -30,7 +30,7 @@ try {
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors({
-    origin: "https://interview-prep-1-frontend.onrender.com/login",
+    origin: "https://interview-prep-1-frontend.onrender.com",
     credentials:true,
 }));
 
