@@ -1,5 +1,5 @@
 const BASE_URL =
-   "https://interview-prep-cegl.onrender.com";
+   "https://interview-prep-cegl.onrender.com/api";
 
 export const API_PATHS = {
   AUTH: {
