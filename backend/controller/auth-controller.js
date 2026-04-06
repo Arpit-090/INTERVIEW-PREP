@@ -14,14 +14,13 @@ const generateToken = (userId) => {
 // @access  Public
 export const registerUser = async (req, res) => {
   try {
-    const { name, email, password, profileImageUrl } = req.body;
+    const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
       return res
         .status(400)
         .json({ message: "Please provide all required fields" });
     }
-
     const userExists = await User.findOne({ email });
 
     if (userExists) {
@@ -35,14 +34,14 @@ export const registerUser = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      profileImageUrl: profileImageUrl || null,
+      // profileImageUrl: profileImageUrl || null,
     });
 
     res.status(201).json({
       _id: user._id,
       name: user.name,
       email: user.email,
-      profileImageUrl: user.profileImageUrl,
+      // profileImageUrl: user.profileImageUrl,
       token: generateToken(user._id),
     });
   } catch (error) {
@@ -58,13 +57,16 @@ export const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
+    if (!user) { console.log("failed in getting mail"); }
 
     if (user && (await bcrypt.compare(password, user.password))) {
+      console.log("failed in campairing password");
+
       res.json({
         _id: user._id,
         name: user.name,
         email: user.email,
-        profileImageUrl: user.profileImageUrl,
+        // profileImageUrl: user.profileImageUrl,
         token: generateToken(user._id),
       });
     } else {
@@ -74,3 +76,18 @@ export const loginUser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const getUserProfile = async (req, res) => {
+  console.log("inside profile fun");
+  console.log("hereeeeeee");
+  const user = req.user;
+  if (!user) { console.log("failed to get user"); }
+  const userId = await User.findById(user)
+  console.log("inside try profile fun");
+  console.log(user);
+  res.json({
+    status: 200,
+    msg: "got the profile data",
+    data: userId
+  })
+}
