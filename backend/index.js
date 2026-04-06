@@ -49,6 +49,6 @@ app.use("/api/auth", router);
 app.use("/api/sessions", sessionrouter);
 app.use("/api/ai", airouter);
 
-app.listen(9000, () => {
+app.listen(PORT, () => {
     console.log(`app is listing at port ${PORT}`);
 })
