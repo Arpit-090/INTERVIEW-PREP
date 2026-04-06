@@ -1,5 +1,5 @@
 const BASE_URL =
-   "http://localhost:9000/api";
+   "https://interview-prep-cegl.onrender.com";
 
 export const API_PATHS = {
   AUTH: {
