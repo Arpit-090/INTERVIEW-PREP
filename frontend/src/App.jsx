@@ -4,7 +4,7 @@ import SignUp from './pages/SignUp'
 import Login from './pages/Login'
 import InterviewPrep from './pages/InterviewPrep'
 import Dashboard from './pages/Dashboard'
-import Profile from './pages/profile'
+import Profile from './pages/Profile'
 
 const App = () => {
   return (
